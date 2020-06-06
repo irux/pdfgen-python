@@ -48,6 +48,18 @@ class TestPdfGenerationAsyncApi(asynctest.TestCase):
             await pdfgen.from_file(paths, 'file')
 
     @pytest.mark.asyncio
+    async def test_pdf_generation_from_file_same_directory(self):
+        with open('testfile.html', 'w') as f:
+            f.write("html")
+
+        path = 'testfile.html'
+
+        pdf = await pdfgen.from_file(EXAMPLE_HTML_FILE, 'out.pdf')
+        self.assertEqual(pdf, 'out.pdf')
+
+        os.remove(path)
+
+    @pytest.mark.asyncio
     async def test_pdf_generation_from_file(self):
         pdf = await pdfgen.from_file(EXAMPLE_HTML_FILE, 'out.pdf')
         self.assertEqual(pdf, 'out.pdf')
