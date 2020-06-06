@@ -15,7 +15,7 @@ class Source(object):
             self.checkFiles()
 
     def checkAbsolutePath(self):
-        if '\\' not in self.source and '/' not in self.source:
+        if '\\' not in self.source or '/' not in self.source:
             raise ValueError("Please give the absolute path location of the file")
 
     def isUrl(self):
