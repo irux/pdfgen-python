@@ -12,13 +12,6 @@ class Source(object):
 
         if self.type is 'file':
             self.checkFiles()
-            self.checkAbsolutePath()
-
-
-    def checkAbsolutePath(self):
-        if isinstance(self.source, str):
-            if '\\' not in self.source and '/' not in self.source:
-                raise ValueError("Please give the absolute path location of the file")
 
     def isUrl(self):
         return 'url' in self.type
@@ -52,5 +45,5 @@ class Source(object):
         if self.isUrl():
             return self.to_s()
         elif self.isFile() and not self.isFileObj():
-            return self._append_protocol(self.to_s(), 'file://')
+            return self._append_protocol(os.path.abspath(self.to_s()), 'file://')
         raise ValueError('Source invalid - cannot be converted to URL paths')
