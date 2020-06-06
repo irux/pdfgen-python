@@ -42,7 +42,7 @@ class TestPdfGenerationSyncApi(unittest.TestCase):
 
         path = 'testfile.html'
 
-        pdf = pdfgen.sync.from_file(EXAMPLE_HTML_FILE, 'out.pdf')
+        pdf = pdfgen.sync.from_file(path, 'out.pdf')
         self.assertEqual(pdf, 'out.pdf')
 
         os.remove(path)

@@ -54,7 +54,7 @@ class TestPdfGenerationAsyncApi(asynctest.TestCase):
 
         path = 'testfile.html'
 
-        pdf = await pdfgen.from_file(EXAMPLE_HTML_FILE, 'out.pdf')
+        pdf = await pdfgen.from_file(path, 'out.pdf')
         self.assertEqual(pdf, 'out.pdf')
 
         os.remove(path)
