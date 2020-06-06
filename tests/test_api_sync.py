@@ -35,6 +35,17 @@ class TestPdfGenerationSyncApi(unittest.TestCase):
         with self.assertRaises(InvalidSourceError):
             pdf = pdfgen.sync.from_url('wrongurl.com', 'out.pdf')
 
+    def test_raise_error_with_invalid_absolute_path(self):
+        with open('testfile.html', 'w') as f:
+            f.write("html")
+
+        path = 'testfile.html'
+
+        with self.assertRaises(ValueError):
+            pdfgen.sync.from_file(path, 'file')
+
+        os.remove(path)
+
     def test_raise_error_with_invalid_file_path(self):
         paths = ['frongpath.html', 'wrongpath2.html']
         with self.assertRaises(InvalidSourceError):

@@ -17,6 +17,7 @@ class Source(object):
 
     def checkAbsolutePath(self):
         if isinstance(self.source, str):
+            print(self.source)
             if '\\' not in self.source or '/' not in self.source:
                 raise ValueError("Please give the absolute path location of the file")
 
