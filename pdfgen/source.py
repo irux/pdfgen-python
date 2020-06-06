@@ -11,12 +11,14 @@ class Source(object):
         self.type = type_
 
         if self.type is 'file':
-            self.checkAbsolutePath()
             self.checkFiles()
+            self.checkAbsolutePath()
+
 
     def checkAbsolutePath(self):
-        if '\\' not in self.source or '/' not in self.source:
-            raise ValueError("Please give the absolute path location of the file")
+        if isinstance(self.source, str):
+            if '\\' not in self.source or '/' not in self.source:
+                raise ValueError("Please give the absolute path location of the file")
 
     def isUrl(self):
         return 'url' in self.type
